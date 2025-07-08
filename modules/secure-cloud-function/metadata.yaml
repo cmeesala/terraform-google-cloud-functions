@@ -25,7 +25,7 @@ spec:
       repo: https://github.com/cmeesala/terraform-google-cloud-functions.git
       sourceType: git
       dir: modules/secure-cloud-function
-    version: 0.6.0
+    version: 0.6.1
     actuationTool:
       flavor: Terraform
       version: ">= 1.3"
@@ -94,7 +94,7 @@ spec:
         connections:
           - source:
               source: github.com/terraform-google-modules/terraform-google-memorystore
-              version: ">= 15.0.0"
+              version: ">= 14.0.0"
             spec:
               outputExpr: "{\"REDIS_HOST\": env_vars.REDIS_HOST, \"REDIS_PORT\": env_vars.REDIS_PORT, \"REDIS_AUTH_STRING\": auth_string}"
               inputPath: null
