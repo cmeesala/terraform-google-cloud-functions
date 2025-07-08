@@ -91,6 +91,19 @@ spec:
         description: A set of key/value environment variable pairs to assign to the function.
         varType: map(string)
         defaultValue: {}
+        connections:
+          - source:
+              source: github.com/terraform-google-modules/terraform-google-memorystore
+              version: ">= 15.0.0"
+            spec:
+              outputExpr: "{\"REDIS_HOST\": env_vars.REDIS_HOST, \"REDIS_PORT\": env_vars.REDIS_PORT, \"REDIS_AUTH_STRING\": auth_string}"
+              inputPath: null
+          - source:
+              source: github.com/terraform-google-modules/terraform-google-sql-db//modules/postgresql
+              version: ">= 25.2.2"
+            spec:
+              outputExpr: "{\"CLOUD_SQL_DATABASE_HOST\": instance_first_ip_address, \"CLOUD_SQL_DATABASE_CONNECTION_NAME\": instance_connection_name, \"CLOUD_SQL_DATABASE_NAME\": env_vars.CLOUD_SQL_DATABASE_NAME, \"CLOUD_SQL_DATABASE_USER\": \"default\", \"CLOUD_SQL_DATABASE_PASSWORD\": generated_user_password, \"CLOUD_SQL_DATABASE_PORT\": \"5432\"}"
+              inputPath: null
       - name: build_environment_variables
         description: A set of key/value environment variable pairs to be used when building the Function.
         varType: map(string)
